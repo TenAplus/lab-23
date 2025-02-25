@@ -46,16 +46,21 @@ void getCommand(string& command, string& key){
 
 void searchName(const vector<string>& names, const vector<int>& scores, const vector<char>& grades, const string& key){
     bool found = false;
+    cout <<"---------------------------------"<<endl;
     for (unsigned i = 0; i < names.size(); i++) {
         if (toUpperStr(names[i]) == key) {
-            cout << "Name: " << names[i] << ", Score: " << scores[i] << ", Grade: " << grades[i] << endl;
+            
+            cout << names[i] << "'s score = " << scores[i] << endl;
+            cout << names[i] << "'s grade = " << grades[i] << endl;
             found = true;
             break;
         }
     }
     if (!found) {
-        cout << "Name not found!" << endl;
+        cout << "Cannot found." << endl;
     }
+    cout <<"---------------------------------"<<endl;
+
 }
 
 void searchGrade(const vector<string>& names, const vector<int>& scores, const vector<char>& grades, const string& key){
