@@ -24,13 +24,13 @@ void importDataFromFile(const string& filename, vector<string>& names, vector<in
     ifstream file(filename);
     string name;
     int score;
-
-    if (!file) {
+    
+    if (!file){
         cout << "Error opening file!" << endl;
         exit(1);
     }
-
-    while (file >> name >> score) {
+    
+    while (file >> name >> score){
         names.push_back(name);
         scores.push_back(score);
         grades.push_back(score2grade(score));
@@ -39,9 +39,8 @@ void importDataFromFile(const string& filename, vector<string>& names, vector<in
 }
 
 void getCommand(string& command, string& key){
-    cout << "Enter command: ";
+    cout << "Please input your command: "<<endl;
     cin >> command;
-    cout << "Enter key: ";
     cin >> key;
 }
 
