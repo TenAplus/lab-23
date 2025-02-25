@@ -20,20 +20,58 @@ string toUpperStr(string x){
     return y;
 }
 
-void importDataFromFile(){
+void importDataFromFile(const string& filename, vector<string>& names, vector<int>& scores, vector<char>& grades){
+    ifstream file(filename);
+    string name;
+    int score;
 
+    if (!file) {
+        cout << "Error opening file!" << endl;
+        exit(1);
+    }
+
+    while (file >> name >> score) {
+        names.push_back(name);
+        scores.push_back(score);
+        grades.push_back(score2grade(score));
+    }
+    file.close();
 }
 
-void getCommand(){
-
+void getCommand(string& command, string& key){
+    cout << "Enter command: ";
+    cin >> command;
+    cout << "Enter key: ";
+    cin >> key;
 }
 
-void searchName(){
-
+void searchName(const vector<string>& names, const vector<int>& scores, const vector<char>& grades, const string& key){
+    bool found = false;
+    for (unsigned i = 0; i < names.size(); i++) {
+        if (toUpperStr(names[i]) == key) {
+            cout << "Name: " << names[i] << ", Score: " << scores[i] << ", Grade: " << grades[i] << endl;
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        cout << "Name not found!" << endl;
+    }
 }
 
-void searchGrade(){
+void searchGrade(const vector<string>& names, const vector<int>& scores, const vector<char>& grades, const string& key){
+    char grade = key[0];  // Assuming the user inputs a single character grade
+    bool found = false;
 
+    for (unsigned i = 0; i < grades.size(); i++) {
+        if (grades[i] == grade) {
+            cout << "Name: " << names[i] << ", Score: " << scores[i] << ", Grade: " << grades[i] << endl;
+            found = true;
+        }
+    }
+    if (!found) {
+        cout << "No students found with grade " << grade << "!" << endl;
+    }
 }
 
 
