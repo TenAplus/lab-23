@@ -66,16 +66,17 @@ void searchName(const vector<string>& names, const vector<int>& scores, const ve
 void searchGrade(const vector<string>& names, const vector<int>& scores, const vector<char>& grades, const string& key){
     char grade = key[0];  // Assuming the user inputs a single character grade
     bool found = false;
-
+    cout <<"---------------------------------"<<endl;
     for (unsigned i = 0; i < grades.size(); i++) {
         if (grades[i] == grade) {
-            cout << "Name: " << names[i] << ", Score: " << scores[i] << ", Grade: " << grades[i] << endl;
+            cout << names[i] << " (" << scores[i] << ")"<< endl;
             found = true;
         }
     }
     if (!found) {
-        cout << "No students found with grade " << grade << "!" << endl;
+        cout << "Cannot found." << endl;
     }
+    cout <<"---------------------------------"<<endl;
 }
 
 
