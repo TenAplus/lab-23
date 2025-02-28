@@ -1,0 +1,11 @@
+string toUpperStr(string x){
+    string y = x;
+    for(unsigned i = 0; i < x.size();i++) y[i] = toupper(x[i]);
+    return y;
+}
+
+void getCommand(string& command, string& key){
+    cout << "Please input your command: "<<endl;
+    cin >> command;
+    cin >> key;
+}
