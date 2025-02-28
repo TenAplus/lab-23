@@ -1,0 +1,43 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+char score2grade(int score){
+    if(score >= 80) return 'A';
+    if(score >= 70) return 'B';
+    if(score >= 60) return 'C';
+    if(score >= 50) return 'D';
+    else return 'F';
+}
+
+void importDataFromFile(string filename, vector<string> &names, vector<int> &scores, vector<char> &grades){
+    ifstream file(filename);
+    string line;
+
+    if (!file) {
+        cout << "Error: Cannot open file " << filename << endl;
+        return;
+    }
+
+    while(getline(file, line)){
+        stringstream ss(line);
+        string name;
+        int score1, score2, score3;
+        
+        getline(ss, name, ':');  // อ่านชื่อ
+        ss >> score1 >> score2 >> score3;  // อ่านคะแนน
+        
+        int totalScore = score1 + score2 + score3;
+        char grade = score2grade(totalScore);
+
+        names.push_back(name);
+        scores.push_back(totalScore);
+        grades.push_back(grade);
+    }
+    
+    file.close();
+}
